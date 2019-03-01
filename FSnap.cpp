@@ -214,37 +214,39 @@ FSNAP_API LRESULT CALLBACK FSnapKeyboardProc(int code, WPARAM wpar, LPARAM lpar)
 
                 unsigned edge = null;
                 unsigned action = null;
-                bool ctrl_key = (GetKeyState(VK_CONTROL) & 0x80) != 0;
+                bool lctrl_key = (GetKeyState(VK_LCONTROL) & 0x80) != 0;
+                bool rctrl_key = (GetKeyState(VK_RCONTROL) & 0x80) != 0;
                 bool shift_key = (GetKeyState(VK_SHIFT) & 0x80) != 0;
 
+                if (!lctrl_key)
                 switch (kb.vkCode)
                 {
                 case VK_LEFT:   
                 case VK_NUMPAD4:
                 case 'J':
                     edge = left;
-                    action = (ctrl_key || shift_key) ? bump : size;
+                    action = (rctrl_key || shift_key) ? bump : size;
                     break;
                     
                 case VK_RIGHT:  
                 case VK_NUMPAD6:
                 case 'L':
                     edge = right;
-                    action = (ctrl_key || shift_key) ? bump : size;
+                    action = (rctrl_key || shift_key) ? bump : size;
                     break;
                     
                 case VK_UP:
                 case VK_NUMPAD8:
                 case 'I':
                     edge = top;
-                    action = (ctrl_key || shift_key) ? bump : size;
+                    action = (rctrl_key || shift_key) ? bump : size;
                     break;
                     
                 case VK_DOWN:
                 case VK_NUMPAD2:
                 case 'K':
                     edge = bottom;
-                    action = (ctrl_key || shift_key) ? bump : size;
+                    action = (rctrl_key || shift_key) ? bump : size;
                     break;
                     
                 case VK_HOME:
